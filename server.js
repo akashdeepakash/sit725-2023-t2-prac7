@@ -5,59 +5,29 @@ let port = process.env.port || 3000;
 app.use(express.static(__dirname + '/'));
 
 
-app.get('/', (req, res)=>{
-    res.render('index.html');
-});
 
-app.get('/addTwoNumbers',(req,res)=>{
-    //let payLoad = {}
-    let statusCode = 200;
-    let sucessMesssage = 'successful';
-    let number1 = req.query.number1; // 99
-    let number2 = req.query.number2; // 40
-    let result = parseInt(number1) + parseInt(number2); // convert them to int
-
-    res.json({
-        message:sucessMesssage, 
-        code: statusCode, 
-        data: result
-    });
-});
-
-app.listen(port, ()=>{
-    //this is the logic that will be fired upon server start
-    console.log('server started 2');
-}); 
-
-
-
-
-/*let express = require('express');
-let app = express();
-let port = process.env.port || 3000;
-
+const cardList = [ 
+    {
+        title: "Kitten 2",
+        path: "catdog2.jpg",
+        link: "About Kitten 2",
+        desciption: "Demo desciption about kitten 2"
+    },
+    {
+        title: "Kitten 3",
+        path: "C:\Users\x3161410\Desktop\catdog3.png",
+        link: "About Kitten 3",
+        desciption: "Demo desciption about kitten 3"
+    }
+];
 app.use(express.static(__dirname + '/'));
+app.set('view engine', 'ejs');
 
-app.get('/', (req,res)=>{
-    res.render('index.html');
+app.get('/', function (req, res) {
+    res.render('pages/index', {cats:cardList});
 });
 
-app.get('/addTwoNumbers',(req,res)=>{
-    //let payLoad = {}
-    let statusCode = 200;
-    let sucessMesssage = 'successful';
-    let number1 = req.query.number1; // 99
-    let number2 = req.query.number2; // 40
-    let result = parseInt(number1) + parseInt(number2); // convert them to int
-
-    res.json({
-        message:sucessMesssage, 
-        code: statusCode, 
-        data: result
-    });
-});
 
 app.listen(port, () => {
-    console.log('server started-2');
+    console.log("App listening to: " + port);
 });
-*/
